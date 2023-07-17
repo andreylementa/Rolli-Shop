@@ -27,6 +27,7 @@ window.addEventListener("click", function (e) {
       // Складываем счетчики
       const counterInCart = itemInCart.querySelector("[data-counter]");
       counterInCart.innerText = +counterInCart.innerText + +productObj.counter;
+      totalProductPrice();
     } else {
       // Добавляем в корзину, если его там нет
       const productToCart = `
