@@ -54,10 +54,9 @@ window.addEventListener("click", function (e) {
                         </div>
 
                         <div class="price">
-                          <div class="price__currency">${
-                            parseInt(productObj.price) *
-                            parseInt(productObj.counter)
-                          }</div>
+                          <div class="price__currency">${parseInt(
+                            productObj.price
+                          )}</div>
                         </div>
                       </div>
                       <!-- // cart-item__details -->
@@ -67,6 +66,7 @@ window.addEventListener("click", function (e) {
     `;
       // Добавление в корзину
       cartWrapper.insertAdjacentHTML("beforeend", productToCart);
+      totalProductPrice();
       //  Убираем 'Корзина пуста'
       toggleCartStatus();
     }

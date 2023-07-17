@@ -29,6 +29,8 @@ window.addEventListener("click", function (e) {
 
   if (e.target.dataset.action === "plus") {
     currentCounter.innerText++;
+    // Обновляем итоговую цену
+    totalProductPrice();
   }
 
   // Если нажата кнопка -
@@ -36,10 +38,13 @@ window.addEventListener("click", function (e) {
   if (e.target.dataset.action === "minus" && currentCounter.innerText > 1) {
     // Проверяем, чтобы текст в счетчике был больше 1
     currentCounter.innerText--;
-
+    // Обновляем итоговую цену
+    totalProductPrice();
     // Удаление в корзине
   } else if (
-    (e.target.dataset.action === "minus" && +currentCounter.innerText) === 1
+    (e.target.dataset.action === "minus" &&
+      +currentCounter.innerText &&
+      e.target.closest(".cart-item")) === 1
   ) {
     e.target.closest(".cart-item").remove();
     // Если корзина пуста
