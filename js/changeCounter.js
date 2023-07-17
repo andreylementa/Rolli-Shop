@@ -15,13 +15,34 @@
 //});
 
 window.addEventListener("click", function (e) {
-  const currentCounter = e.target
-    .closest(".counter-wrapper")
-    .querySelector("[data-counter]");
-  if (e.target.dataset.action === "minus") {
-    currentCounter.innerText > 1 && currentCounter.innerText--;
-  } else if (e.target.dataset.action === "plus") {
-    e.target.closest(".counter-wrapper").querySelector("[data-counter]")
-      .innerText++;
+  let currentCounter;
+  if (
+    e.target.dataset.action === "minus" ||
+    e.target.dataset.action === "plus"
+  ) {
+    currentCounter = e.target
+      .closest(".counter-wrapper")
+      .querySelector("[data-counter]");
+  }
+
+  // Если нажата кнопка +
+
+  if (e.target.dataset.action === "plus") {
+    currentCounter.innerText++;
+  }
+
+  // Если нажата кнопка -
+
+  if (e.target.dataset.action === "minus" && currentCounter.innerText > 1) {
+    // Проверяем, чтобы текст в счетчике был больше 1
+    currentCounter.innerText--;
+
+    // Удаление в корзине
+  } else if (
+    (e.target.dataset.action === "minus" && +currentCounter.innerText) === 1
+  ) {
+    e.target.closest(".cart-item").remove();
+    // Если корзина пуста
+    toggleCartStatus();
   }
 });
